@@ -8,7 +8,7 @@ function NewsCard({article, active, handleChangeActive}) {
         <div className='content-all'>
             <div className='rectangle-news'>
                 <div>
-                    <div className='section-info'>
+                    <div style={{wordBreak:'break-all'}} className='section-info'>
                         <span className='time'>
                             <img src="img/iconmonstr-time-2.svg"
                             className="iconmonstr-time-2" alt='timer'>

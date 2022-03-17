@@ -10,10 +10,20 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [totalPages, setTotalPages] = useState(0)
+  const [totalPages, setTotalPages] = useState(0);
+  const [query, setQuery] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+
   
   const handlePageChange = event => {
     setCurrentPage(event.selected);
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    setCurrentPage(0);
+    setQuery(searchInput);
+    console.log(searchInput, 'buscador');
   }
 
   useEffect(() =>{
@@ -23,7 +33,7 @@ function App() {
         const {data} = await axios.get(
           "https://hn.algolia.com/api/v1/search?",
           {
-            params: {page:currentPage},
+            params: {page:currentPage, query},
           }
         
         );
@@ -38,22 +48,30 @@ function App() {
 
     };
     fetchData();
-  }, [currentPage])
+  }, [currentPage, query])
 
   return (
     <div className="home-view">
       <div className="content">
         <Nav></Nav>
+        <form className="search-form" onChange={handleSubmit}>
+        <select onChange={event => setSearchInput(event.target.value)}>
+          <option value={''}>Select your news</option>
+          <option value={'Angular'}>Angular</option>
+          <option value={'React'}>React</option>
+          <option value={'Vuejs'}>Vuejs</option>
+        </select>
+      </form>
         {isLoading ? (
             <p>Loading...</p> 
           ) : (
+            
               articles.map((article) => (
                   <NewsCard article={article} key={article.objectID}/>
               ))
 
           )}
-      </div>
-      <ReactPagination
+                <ReactPagination
         nextLabel=">"
         previousLabel="<"
         breakLabel="..."
@@ -66,6 +84,7 @@ function App() {
         previousClassName="previous-page"
         nextClassName="next-page"
       />
+      </div>
     </div>
     
   );
