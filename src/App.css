@@ -22,8 +22,134 @@
 .rectangle {
   width: auto;
   height: auto;
-  margin: 0 0 70px;
+  margin: 0 0 0 0;
   padding: 44px 1082px 42px 150px;
   box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
   background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
 }
+
+.content {
+  display: inline-block;
+  text-align: center;
+}
+
+.content-all {
+  margin: 0;
+  display: inline-block;
+  text-align: center;
+}
+
+.rectangle-news {
+  display: inline-block;
+  width: 490px;
+  height: 70px;
+  margin: 38px 150px 30px 40px;
+  padding: 0 0 0 26px;
+  opacity: 0.8;
+  border-radius: 6px;
+  border: solid 1px #979797;
+  background-color: #fff;
+  text-align: justify;
+}
+.section-info {
+  display: inline-block;
+}
+.rectangle-fav {
+    float: right;
+    display: block;
+    width: 12%;
+    height: 68px;
+    border-radius: 0px 6px 6px 0;
+    border: solid 1px #2f2d2d;
+    background-color: #2f2d2d;
+}
+.rectangle-fav {
+  float: right;
+  display: block;
+  width: 12%;
+  height: 68px;
+  opacity: 0.2;
+  border-radius: 0px 6px 6px 0;
+  border: solid 1px #2f2d2d;
+  background-color: #2f2d2d;
+}
+
+
+ .new-title {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1.43;
+  letter-spacing: 0.25px;
+  color: #6b6b6b;
+}
+
+ .time {
+  font-family: Roboto;
+  font-size: 11px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #767676;
+}
+
+img.iconmonstr-time-2 {
+  width: 16px;
+  height: 16px;
+  margin: 10px 4px 6px 0;
+  object-fit: contain;
+  margin-bottom: auto;
+  vertical-align: bottom;
+}
+
+img.iconmonstr-favorite-2 {
+  margin-top: 30%;
+  width: 100%;
+  height: 40%;
+  object-fit: contain;
+  opacity: 1 !important;
+}
+
+.pagination {
+  position:fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f7f7f7;
+  width: 100%;
+  padding: 20px 10px;
+  margin: 0;
+  list-style: none;
+}
+.pagination a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 0 8px;
+  font-size: 20px;
+  background-color: #fff;
+  color: #1c1e29;
+  text-decoration: none;
+  padding: 10px 12 px;
+}
+
+.pagination a:hover{
+  background-color: #ccc;
+  color: #fff;
+}
+
+.active-page{
+  background-color: #ccc;
+  color: #fff;
+}
+
