@@ -54,14 +54,25 @@ function App() {
     <div className="home-view">
       <div className="content">
         <Nav></Nav>
-        <form className="search-form" onChange={handleSubmit}>
-        <select onChange={event => setSearchInput(event.target.value)}>
-          <option value={''}>Select your news</option>
-          <option value={'Angular'}>Angular</option>
-          <option value={'React'}>React</option>
-          <option value={'Vuejs'}>Vuejs</option>
-        </select>
-      </form>
+        <div className="filter-component">
+          <li>All</li>
+          <li>My Faves</li>
+        </div>
+        <div>
+          <form className="search-form" onChange={handleSubmit}>
+            <select className="filter" onChange={event => setSearchInput(event.target.value)}>
+              <option value={''}>  Select your news</option>
+              <option value={'Angular'}>
+              <img alt="" src="/img/image-138">
+              </img>
+              Angular
+              </option>
+              <option value={'React'}>React</option>
+              <option value={'Vuejs'}>Vuejs</option>
+            </select>
+          </form>
+        </div>
+
         {isLoading ? (
             <p>Loading...</p> 
           ) : (
@@ -71,21 +82,22 @@ function App() {
               ))
 
           )}
-                <ReactPagination
+
+      </div>
+        <ReactPagination
         nextLabel=">"
         previousLabel="<"
-        breakLabel="..."
+        breakLabel={'...'}
         forcePage={currentPage}
         pageCount={totalPages}
         renderOnZeroPageCount={null}
         onPageChange={handlePageChange}
         className='pagination'
-        activeClassName="active-page"
+        activeClassName={"active-page"}
         previousClassName="previous-page"
         nextClassName="next-page"
       />
       </div>
-    </div>
     
   );
 }
