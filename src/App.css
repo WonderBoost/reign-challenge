@@ -69,6 +69,7 @@
   border: solid 1px #2f2d2d15;
   background-color: #2f2d2d15;
   border-top-style: none;
+  cursor: pointer;
 }
 
 
@@ -177,10 +178,22 @@ img.Image-141 {
   border-radius: 2px;
   border: solid 1px #d6d6d6;
 }
+
 .filter-component :hover{
   border-color: #1890ff;
   color: #1890ff;
   cursor: pointer;
+}
+
+.all{
+  display: inline-block;
+  width: 98px;
+  height: 31px;
+  padding: 3px 16px 0 17px;
+  border-radius: 2px;
+  color: #1890ff;
+  cursor: pointer;
+  border: solid 1px #1890ff !important;
 }
 
 .filter-component{

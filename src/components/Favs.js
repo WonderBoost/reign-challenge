@@ -1,33 +1,14 @@
 import React from 'react';
 
-function NewsCard({article}) {
+
+function Favs({article, update}) {
     const openInNewTab = (url) => {
         const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
         if (newWindow) newWindow.opener = null
     }
-    
+    const toggleImage = () => setIsSelected(!isSelected);
     const [isSelected, setIsSelected] = React.useState(false);
 
-    const setFav = (data) => {
-        if (localStorage.getItem("favs") === null) {
-            var auxarr = [];
-            auxarr.push(data)
-            localStorage.setItem('favs', JSON.stringify(auxarr))
-            setIsSelected(true)
-        }else{
-            var aux = JSON.parse(localStorage.getItem('favs'));
-            var id_aux =  data.objectID;
-            var chek = aux.find(c => c.objectID === id_aux);
-            if (chek === undefined) {
-                aux.push(data);
-                localStorage.setItem('favs', JSON.stringify(aux));
-                setIsSelected(true)
-            } else {
-                alert("No puede ingresar el mismo item favorito", chek.objectID)
-            }
-            
-        }
-    }
     const unsetFav = (i) => {
         if (localStorage.getItem("favs") === null) {
             console.log("vacio");
@@ -38,10 +19,11 @@ function NewsCard({article}) {
               }).indexOf(i);
             aux.splice(index, 1);
             localStorage.setItem('favs', JSON.stringify(aux));
-            setIsSelected(false)
-        }
+            update()
+        }   
     }
-    if (!article.title) return null;
+    
+    if (!article.objectID) return null;
     return (
         <div className='content-all'>
             <div className='rectangle-news' >
@@ -58,16 +40,16 @@ function NewsCard({article}) {
                         <span className='new-title'>{article.title}</span>
                     </div>
                     {!isSelected ? (
-                    <button className="rectangle-fav" onClick={()=> setFav(article)}>
-                        <img src="img/iconmonstr-favorite-2.svg"
-                        className="iconmonstr-favorite-2" alt='fav'>
+                    <button className="rectangle-fav" onClick={()=> unsetFav(article.objectID)}>
+                        <img src="img/iconmonstr-favorite-3.svg"
+                        className="iconmonstr-favorite-3" alt='fav'>
                         </img>
                     </button>
                     ) : (
                         
-                        <button className="rectangle-fav" onClick={()=> unsetFav(article.objectID)}>
+                        <button className="rectangle-fav" >
                             <img src="img/iconmonstr-favorite-3.svg"
-                            className="iconmonstr-favorite-3" alt='fav'>
+                            className="iconmonstr-favorite-2" alt='fav'>
                             </img>
                         </button>
                     )}
@@ -79,4 +61,4 @@ function NewsCard({article}) {
     )
 }
 
-export default NewsCard
+export default Favs

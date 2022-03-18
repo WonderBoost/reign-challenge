@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import ReactPagination from "react-paginate";
 import Nav from "./components/Nav";
 import NewsCard from "./components/NewsCard"
+import Favs from "./components/Favs"
 import "./App.css";
 import Select from 'react-select'
 
@@ -11,9 +12,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState(0);
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [myfaves, setMyfaves] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [query, setQuery] = useState("");
-  const [searchInput, setSearchInput] = useState("");
+  const [localS, setLocalS] = useState([]);
 
   const options = [
     {
@@ -75,6 +77,20 @@ function App() {
     setQuery(data.value);
   }
 
+  const changeView = (e) => {
+    setMyfaves(e)
+    if (e === true) {
+      if (localStorage.getItem("favs") !== null) {
+        setLocalS(JSON.parse(localStorage.getItem("favs")))
+      }
+    }
+  }
+  const refresh = () => {
+    if (localStorage.getItem("favs") !== null) {
+      setLocalS(JSON.parse(localStorage.getItem("favs")))
+    }
+  }
+
   useEffect(() =>{
     setIsLoading(true);
     const fetchData = async () => {
@@ -104,38 +120,58 @@ function App() {
       <div className="content">
         <Nav></Nav>
         <div className="filter-component">
-          <li>All</li>
-          <li>My Faves</li>
-        </div>
-        <div className="container-select">
-          <div className='content-select'>
-            <Select placeholder='Select your news' options={options} styles={customStyles} onChange={querySelect} />
-          </div>
+          <li className={`${myfaves ===false ? "all" : ""}`} onClick={()=> changeView(false)}>All</li>
+          <li className={`${myfaves ===true ? "all" : ""}`} onClick={()=> changeView(true)}>My Faves</li>
         </div>
 
+        {myfaves === false ? 
+          (
+            <>
+              <div className="container-select">
+                <div className='content-select'>
+                  <Select placeholder='Select your news' options={options} styles={customStyles} onChange={querySelect} />
+                </div>
+              </div>
+                {isLoading ? (
+                  <p>Loading...</p> 
+                ) : (
+                  
+                    articles.map((article) => (
+                        <NewsCard article={article} key={article.objectID}/>
+                    ))
 
-        {isLoading ? (
-            <p>Loading...</p> 
-          ) : (
-            
-              articles.map((article) => (
-                  <NewsCard article={article} key={article.objectID}/>
-              ))
+                )}
+                <ReactPagination
+                  nextLabel=">"
+                  previousLabel="<"
+                  breakLabel={'...'}
+                  forcePage={currentPage}
+                  pageCount={totalPages}
+                  renderOnZeroPageCount={null}
+                  onPageChange={handlePageChange}
+                  className='pagination'
+                  activeClassName={"active-page"}
+                  previousClassName="previous-page"
+                  nextClassName="next-page"
+                />
+            </>
+          )
+          :
+          (
+            <>
+              {localS === null ? (
+                  <p>Loading...</p> 
+                ) : (
+                  localS.map((local) => (
+                    <Favs update={refresh} article={local} key={local.objectID}/>
+                  ))
 
-          )}
-        <ReactPagination
-        nextLabel=">"
-        previousLabel="<"
-        breakLabel={'...'}
-        forcePage={currentPage}
-        pageCount={totalPages}
-        renderOnZeroPageCount={null}
-        onPageChange={handlePageChange}
-        className='pagination'
-        activeClassName={"active-page"}
-        previousClassName="previous-page"
-        nextClassName="next-page"
-      />
+                )}
+            </>
+          )
+        }
+
+        
       </div>
 
       </div>
