@@ -111,17 +111,19 @@ img.iconmonstr-favorite-2 {
   object-fit: contain;
   opacity: 1 !important;
 }
+img.iconmonstr-favorite-3 {
+  margin-top: 30%;
+  width: 100%;
+  height: 40%;
+  object-fit: contain;
+  opacity: 1 !important;
+}
 
 .pagination {
-  position:fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #f7f7f7;
-  width: 100%;
   padding: 20px 10px;
   margin: 0;
   list-style: none;
@@ -148,15 +150,6 @@ img.iconmonstr-favorite-2 {
   color: #fff;
 }
 
-.filter {
-  width: 240px;
-  height: 32px;
-  margin: 50px 50px 50px 225px;
-  padding: 5px 12px 5px 12px;
-  border-radius: 4px;
-  border: solid 1px #2e2e2e;
-  background-color: #fff;
-}
 img.Image-138 {
   width: 24px;
   height: 24px;
@@ -196,4 +189,15 @@ img.Image-141 {
 
 .search-form{
   text-align: left;
+}
+.content-select{
+    margin: 0;
+    display: block;
+    position: relative;
+}
+
+.container-select{
+  width: 50%;
+  text-align: -webkit-center;
+
 }

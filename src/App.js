@@ -5,6 +5,7 @@ import ReactPagination from "react-paginate";
 import Nav from "./components/Nav";
 import NewsCard from "./components/NewsCard"
 import "./App.css";
+import Select from 'react-select'
 
 function App() {
   const [currentPage, setCurrentPage] = useState(0);
@@ -14,16 +15,64 @@ function App() {
   const [query, setQuery] = useState("");
   const [searchInput, setSearchInput] = useState("");
 
+  const options = [
+    {
+      value: "Angular",
+      label: (
+        <div>
+          <img alt="" src={require('./img/image-138.png')}/>{' '}
+          <label>Angular</label>
+        </div>
+      )
+    },
+    {
+      value: "React",
+      label: (
+        <div>
+          <img alt="" src={require('./img/image-140.png')}/>{' '}
+          <label>React</label>
+        </div>
+      )
+    },
+    {
+      value: "VueJs",
+      label: (
+        <div>
+          <img alt="" src={require('./img/image-141.png')}/>{' '}
+          <label>VueJs</label>
+        </div>
+      )
+    }
+  ];
+
+  const customStyles = {
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '1px solid transparent',
+      color: 'black',
+      padding: 20,
+      textAlign: 'left',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }),
+    placeholder: (provided, state) => ({
+      ...provided,
+      textAlignLast: 'left'
+    }),
+    container: (provided, state) => ({
+      ...provided,
+      width: '300px'
+    }),
+  }
+
   
   const handlePageChange = event => {
     setCurrentPage(event.selected);
   }
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  const querySelect = (data) => {
     setCurrentPage(0);
-    setQuery(searchInput);
-    console.log(searchInput, 'buscador');
+    setQuery(data.value);
   }
 
   useEffect(() =>{
@@ -58,20 +107,12 @@ function App() {
           <li>All</li>
           <li>My Faves</li>
         </div>
-        <div>
-          <form className="search-form" onChange={handleSubmit}>
-            <select className="filter" onChange={event => setSearchInput(event.target.value)}>
-              <option value={''}>  Select your news</option>
-              <option value={'Angular'}>
-              <img alt="" src="/img/image-138">
-              </img>
-              Angular
-              </option>
-              <option value={'React'}>React</option>
-              <option value={'Vuejs'}>Vuejs</option>
-            </select>
-          </form>
+        <div className="container-select">
+          <div className='content-select'>
+            <Select placeholder='Select your news' options={options} styles={customStyles} onChange={querySelect} />
+          </div>
         </div>
+
 
         {isLoading ? (
             <p>Loading...</p> 
@@ -82,8 +123,6 @@ function App() {
               ))
 
           )}
-
-      </div>
         <ReactPagination
         nextLabel=">"
         previousLabel="<"
@@ -97,6 +136,8 @@ function App() {
         previousClassName="previous-page"
         nextClassName="next-page"
       />
+      </div>
+
       </div>
     
   );
