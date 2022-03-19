@@ -1,5 +1,5 @@
 .home-view{
-  width: auto;
+  width: 100%;
   height: auto;
   background-color: #fcfcfc;
 
@@ -17,15 +17,17 @@
   line-height: 1;
   letter-spacing: normal;
   color: #3b3b3b;
+  margin-left: 50px;
 }
 
 .rectangle {
-  width: auto;
+  width: 100%;
   height: auto;
   margin: 0 0 0 0;
-  padding: 44px 1082px 42px 150px;
+  padding: 40px 0px 40px 0px;
   box-shadow: 0 1px 4px 0 rgba(0, 21, 41, 0.12);
   background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
+  text-align: left;
 }
 
 .content {
@@ -121,6 +123,7 @@ img.iconmonstr-favorite-3 {
 }
 
 .pagination {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,4 +216,108 @@ img.Image-141 {
   width: 50%;
   text-align: -webkit-center;
 
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .content{
+    display: none;
+  }
+  .rectangle {
+    width: auto;
+    padding: 40px 0px 0px 0px;
+    height: 60px;
+    margin: 0 0 0 0;
+    box-shadow: 0 1px 4px 0 rgb(0 21 41 / 12%);
+    background-image: linear-gradient(to bottom, #ececec -32%, #fff 124%);
+    text-align: center !important;
+  }
+  .hacker-news {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    font-family: Baskerville;
+    font-size: 20px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #3b3b3b;
+    
+  }
+  .content {
+    display: block;
+    text-align: center;
+  }
+
+  .filter-component li{
+    display: inline-block;
+    width: 10x0px;
+    height: 31px;
+    margin-bottom: 50px;
+    padding: 3px 16px 0 17px;
+    border-radius: 2px;
+    border: solid 1px #d6d6d6;
+  }
+  .css-azbaz-container {
+    position: relative;
+    box-sizing: border-box;
+    width: 200px !important;
+    text-align-last: center !important;
+  }
+  .container-select {
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  .content-all{
+    width: 100%;
+  }
+  .rectangle-news{
+    display: inline-block;
+    width: 80%;
+    height: auto;
+    margin: 5px 5px 5px 5px;
+    padding: 0 0 0 26px;
+    opacity: 0.8;
+    border-radius: 6px;
+    border: solid 1px #979797;
+    background-color: #fff;
+    text-align: justify;
+  }
+  
+  .section-info {
+      display: inline-block;
+      width: 81%;
+      word-break: break-all;
+  }
+  .pagination a {
+    width: 10px;
+    height: 32px;
+    margin: 0 4px;
+    padding: 6px 5px 4px;
+    border-radius: 6px;
+    border: solid 1px #d9d9d9;
+    background-color: #fff;
+    color: #767676;
+    font-size: 15px;
+  }
+  .pagination {
+    padding: 8px 0px !important;
+}
+.active-page a {
+  background-color: #1890ff !important;
+  color: #fff;
+}
+.rectangle-fav {
+  float: right;
+  display: block;
+  width: 12%;
+  height: 150px;
+  border-radius: 0px 6px 6px 0;
+  border: solid 1px #2f2d2d15;
+  background-color: #2f2d2d15;
+  border-top-style: none;
+  cursor: pointer;
+}
 }

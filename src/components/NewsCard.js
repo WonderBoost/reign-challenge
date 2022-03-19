@@ -23,7 +23,7 @@ function NewsCard({article}) {
                 localStorage.setItem('favs', JSON.stringify(aux));
                 setIsSelected(true)
             } else {
-                alert("No puede ingresar el mismo item favorito", chek.objectID)
+                alert("Este artículo ya está en la sección de favoritos", chek.objectID)
             }
             
         }
@@ -52,7 +52,9 @@ function NewsCard({article}) {
                             className="iconmonstr-time-2" alt='timer'>
                             </img>
                             {article.created_at}
-                            &nbsp;by {article.author}
+                        </span><br></br>
+                        <span className='time'>
+                            by: {article.author}
                         </span>
                         <br></br>
                         <span className='new-title'>{article.title}</span>

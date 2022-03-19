@@ -53,7 +53,7 @@ function App() {
       borderBottom: '1px solid transparent',
       color: 'black',
       padding: 20,
-      textAlign: 'left',
+      textAlign: 'center',
       justifyContent: 'center',
       alignItems: 'center',
     }),
@@ -116,7 +116,7 @@ function App() {
   }, [currentPage, query])
 
   return (
-    <div className="home-view">
+
       <div className="content">
         <Nav></Nav>
         <div className="filter-component">
@@ -129,6 +129,7 @@ function App() {
             <>
               <div className="container-select">
                 <div className='content-select'>
+                  <br></br>
                   <Select placeholder='Select your news' options={options} styles={customStyles} onChange={querySelect} />
                 </div>
               </div>
@@ -174,7 +175,6 @@ function App() {
         
       </div>
 
-      </div>
     
   );
 }
